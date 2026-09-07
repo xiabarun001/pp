@@ -42,11 +42,19 @@ function hasFrames() {
 
 // 自定义皮肤:轮播当前状态的帧;该状态没有专门的帧就退回 idle 的帧
 // petted(被摸)没专门皮肤时借用 success 的陶醉脸
+function activeSkin() {
+  // 移动优先于表情:散步/疯跑/回家用跑步皮肤,下落用游泳皮肤(有对应帧才生效)
+  if (['walk', 'dash', 'return'].includes(motionMode) && assets.frames?.run) return 'run';
+  if (motionMode === 'fall' && assets.frames?.swim) return 'swim';
+  return state;
+}
+
 function playFrames() {
   clearInterval(frameTimer);
   if (!hasFrames()) return;
-  const frames = assets.frames[state]
-    || (state === 'petted' || state === 'sleep' ? assets.frames.success : null)
+  const key = activeSkin();
+  const frames = assets.frames[key]
+    || (key === 'petted' || key === 'sleep' ? assets.frames.success : null)
     || assets.frames.idle || [];
   if (!frames.length) return;
   let i = 0;
@@ -124,10 +132,12 @@ window.pet.onNotify((p) => {
 
 // ── 主进程的移动指令:切动画类 + 镜像朝向 ──
 window.pet.onMotion(({ mode, facing: f }) => {
+  const modeChanged = motionMode !== mode;
   motionMode = mode;
   facing = f === -1 ? -1 : 1;
   refreshClasses();
   applySkinTransform();
+  if (modeChanged) playFrames();
 });
 
 // ── 右键菜单点选表情:纯换脸不弹气泡,点她一下或选「回待机」恢复 ──

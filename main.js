@@ -38,7 +38,7 @@ function saveState(patch) {
 // —— 换肤:扫 assets/<状态>/ 下的图片帧,有就发给渲染进程用,没有就用内置 SVG 形象 ——
 function buildAssetManifest() {
   const manifest = { frames: {}, config: {}, owner: OWNER };
-  for (const st of ['idle', 'success', 'fail', 'attention', 'urgent', 'cry', 'angry', 'hello', 'sleep']) {
+  for (const st of ['idle', 'success', 'fail', 'attention', 'urgent', 'cry', 'angry', 'hello', 'sleep', 'run', 'swim']) {
     const dir = path.join(__dirname, 'assets', st);
     try {
       const frames = fs.readdirSync(dir)
