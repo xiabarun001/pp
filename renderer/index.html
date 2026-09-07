@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<title>pp</title>
+<link rel="stylesheet" href="pet.css" />
+</head>
+<body>
+  <div id="bubble" class="bubble">
+    <div id="bubbleText" class="bubble-text"></div>
+    <div class="bubble-tail"></div>
+  </div>
+
+  <div id="petWrap" class="pet-wrap state-idle">
+    <!-- 自定义皮肤模式:assets/ 里有图片帧时用它,内置形象隐藏 -->
+    <img id="petImg" class="pet-img" alt="" draggable="false" />
+
+    <!-- 内置占位形象:QA 小检查员 -->
+    <svg id="petSvg" class="pet-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- 影子 -->
+      <ellipse class="shadow" cx="100" cy="188" rx="46" ry="7" />
+      <!-- 天线 -->
+      <line x1="100" y1="76" x2="100" y2="42" class="antenna" />
+      <circle id="antennaBulb" cx="100" cy="36" r="9" class="bulb" />
+      <!-- 身体 -->
+      <ellipse cx="100" cy="132" rx="66" ry="58" class="body" />
+      <ellipse cx="100" cy="150" rx="42" ry="30" class="belly" />
+      <!-- 左臂 -->
+      <ellipse id="armL" cx="40" cy="140" rx="12" ry="20" class="arm" transform="rotate(18 40 140)" />
+      <!-- 右臂 + 放大镜 -->
+      <g id="armR">
+        <ellipse cx="160" cy="138" rx="12" ry="20" class="arm" transform="rotate(-18 160 138)" />
+        <g class="magnifier">
+          <line x1="166" y1="128" x2="178" y2="112" />
+          <circle cx="184" cy="103" r="12" class="lens" />
+        </g>
+      </g>
+      <!-- 脚 -->
+      <ellipse cx="76" cy="186" rx="15" ry="8" class="foot" />
+      <ellipse cx="124" cy="186" rx="15" ry="8" class="foot" />
+      <!-- 脸 -->
+      <g class="face">
+        <!-- 普通眼睛 -->
+        <g class="eyes-normal">
+          <circle cx="76" cy="116" r="15" class="eye-white" />
+          <circle cx="124" cy="116" r="15" class="eye-white" />
+          <circle class="pupil" cx="79" cy="118" r="6.5" />
+          <circle class="pupil" cx="127" cy="118" r="6.5" />
+          <circle cx="82" cy="114" r="2.2" class="eye-light" />
+          <circle cx="130" cy="114" r="2.2" class="eye-light" />
+          <rect class="eyelid" x="58" y="98" width="36" height="36" rx="18" />
+          <rect class="eyelid" x="106" y="98" width="36" height="36" rx="18" />
+        </g>
+        <!-- 开心眼睛 ^ ^ -->
+        <g class="eyes-happy">
+          <path d="M64 118 Q76 106 88 118" />
+          <path d="M112 118 Q124 106 136 118" />
+        </g>
+        <!-- 担心的眉毛(fail 时叠加) -->
+        <g class="brows-worried">
+          <path d="M64 98 Q76 104 88 100" />
+          <path d="M112 100 Q124 104 136 98" />
+        </g>
+        <!-- 嘴 -->
+        <path class="mouth-idle"    d="M92 142 Q100 148 108 142" />
+        <path class="mouth-happy"   d="M88 140 Q100 154 112 140" />
+        <path class="mouth-worried" d="M92 146 Q100 140 108 146" />
+        <circle class="mouth-o" cx="100" cy="145" r="6" />
+        <!-- 腮红 -->
+        <ellipse cx="58" cy="134" rx="9" ry="5" class="cheek" />
+        <ellipse cx="142" cy="134" rx="9" ry="5" class="cheek" />
+      </g>
+      <!-- fail 时头顶冒的汗滴 -->
+      <path class="sweat" d="M146 78 q6 10 0 14 q-6 -4 0 -14" />
+      <!-- attention 时的感叹号 -->
+      <g class="exclaim">
+        <rect x="156" y="52" width="7" height="20" rx="3.5" />
+        <circle cx="159.5" cy="82" r="4" />
+      </g>
+    </svg>
+  </div>
+
+  <script src="pet.js"></script>
+</body>
+</html>

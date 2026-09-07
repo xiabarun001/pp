@@ -1,0 +1,9 @@
+node_modules/
+.env
+*.log
+.DS_Store
+Thumbs.db
+dist/
+# 真人形象素材不入公开仓库(肖像隐私),本地保留
+assets/**/*.png
+build/

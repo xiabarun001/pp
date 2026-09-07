@@ -1,0 +1,40 @@
+{
+  "name": "pp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "pp:桌面桌宠(Lumitest 的姊妹项目),纯宠物形态,通知接口保留未接线",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiabarun001/pp.git"
+  },
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack:mac": "electron-builder --mac dir",
+    "pack:win": "electron-builder --win portable"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "com.pp.pet",
+    "productName": "pp",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.cjs",
+      "renderer/**",
+      "assets/**",
+      "package.json"
+    ],
+    "mac": {
+      "icon": "build/icon.icns",
+      "category": "public.app-category.utilities"
+    }
+  }
+}
